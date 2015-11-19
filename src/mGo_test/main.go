@@ -25,7 +25,7 @@ func main() {
         c := session.DB("test").C("people")
 		
        
-		 err = c.Insert(&Person{"Ale", "+55 53 8116 9639"},
+		err = c.Insert(&Person{"Ale", "+55 53 8116 9639"},
 	               &Person{"Cla", "+55 53 8402 8510"})
         if err != nil {
                 log.Fatal(err)

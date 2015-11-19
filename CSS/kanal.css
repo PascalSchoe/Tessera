@@ -1,0 +1,50 @@
+/*
+    Das wird später im Profil benutzt ids findest du in registration html
+*/
+body{
+    margin:0;
+    padding: 0;
+}
+#wrapper
+{
+    width: 100%;
+    height: 100vh;
+    outline: 0;
+    text-align: center;
+    overflow-y: scroll;
+}
+h2,h3
+{
+    color:#fff;
+}
+#regBox
+{
+    background: url('../RES/IMG/sidebar.jpg');
+    width: 20%;
+    height: 100%;
+    float:left;
+}
+#dummy
+{
+    border-bottom: 1px solid #262627;
+}
+#dummy2
+{
+    background: url('../RES/IMG/sidebar.jpg');
+    border-top: 1px solid #3b4143;
+    width: 100%;
+    height: 10%;
+}
+#regInfo
+{
+    background:#202527;
+    border-top: 2px solid #1f1f1f;
+    box-shadow: inset 0px -1px 0px 0px #3b4143;
+    width: 100%;
+    height: 20%;
+    float:left;
+}
+.clearFix
+{
+    clear:both;
+}
