@@ -14,8 +14,83 @@ function registerHandler() {
     }
 
     //________________________
+
+    var logForm = $("logForm");
+
+    logForm.addEventListener("submit", function(event){
+        event.preventDefault();
+        find();
+    });
+
+    //________________________
+
+    var getAllUserBtn = $("getAllUser");
+
+    getAllUserBtn.addEventListener("click", function(){
+        requestAllUser();
+    });
+
+    //________________________
+
+    var deleteUserBtn = $("deleteUserBtn");
+    deleteUserBtn.addEventListener("click",function(){
+        deleteUser();
+    });
+}
+function find(){
+    var logUsername = $("log_username");
+
+    var xhr = new XMLHttpRequest();
+    var params = "username=" + logUsername.value;
+
+    xhr.open("POST", "http://localhost:4242/getUser", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(params);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = xhr.responseText;
+            postResponse("System: " +response,"notification", "green");
+        }
+    }
 }
 
+function requestAllUser(){
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "http://localhost:4242/getAllUser",true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send(null);
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            var response = xhr.responseText;
+            postResponse(response, "notification","green");
+        }
+
+    }
+}
+function deleteUser(){
+    var xhr = new XMLHttpRequest();
+
+    xhr.open( "POST","http://localhost:4242/deleteUser",true );
+    xhr.withCredentials = true;
+    xhr.send();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            var response = xhr.responseText;
+            postResponse(response, "notification","green");
+        }
+    }
+}
+function makeCookie(){
+    var xhr = XMLHttpRequest();
+
+    xhr.withCredentials = true;
+    xhr.open( "POST", "http://localhost:4242/makeCookie",true);
+    xhr.send();
+}
 function startRegistration() {
     var regUsername = document.getElementById("username");
     var regPasswordOne = document.getElementById("passwordOne");

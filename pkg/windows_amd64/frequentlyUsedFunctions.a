@@ -1,0 +1,134 @@
+!<arch>
+__.PKGDEF       0           0     0     644     11886     `
+go object windows amd64 go1.5.1 X:none
+build id "386a0814179c0baa51439b9cfeaae279435aba14"
+
+$$
+package frequentlyUsedFunctions
+	import runtime "runtime"
+	import http "net/http"
+	import time "time"
+	import strings "strings"
+	import html "html"
+	func @"".SanitizeInput (@"".inputÂ·2 string) (? string)
+	import io "io" // indirect
+	type @"io".Writer interface { Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+	type @"net/http".keyValues struct { @"net/http".key string; @"net/http".values []string }
+	type @"net/http".headerSorter struct { @"net/http".kvs []@"net/http".keyValues }
+	func (@"net/http".sÂ·2 *@"net/http".headerSorter "esc:0x1") Len () (? int) { return len(@"net/http".sÂ·2.@"net/http".kvs) }
+	func (@"net/http".sÂ·2 *@"net/http".headerSorter "esc:0x1") Less (@"net/http".iÂ·3 int, @"net/http".jÂ·4 int) (? bool) { return @"net/http".sÂ·2.@"net/http".kvs[@"net/http".iÂ·3].@"net/http".key < @"net/http".sÂ·2.@"net/http".kvs[@"net/http".jÂ·4].@"net/http".key }
+	func (@"net/http".sÂ·1 *@"net/http".headerSorter "esc:0x9") Swap (@"net/http".iÂ·2 int, @"net/http".jÂ·3 int) { @"net/http".sÂ·1.@"net/http".kvs[@"net/http".iÂ·2], @"net/http".sÂ·1.@"net/http".kvs[@"net/http".jÂ·3] = @"net/http".sÂ·1.@"net/http".kvs[@"net/http".jÂ·3], @"net/http".sÂ·1.@"net/http".kvs[@"net/http".iÂ·2] }
+	type @"net/http".Header map[string][]string
+	func (@"net/http".hÂ·1 @"net/http".Header "esc:0x9") Add (@"net/http".keyÂ·2 string, @"net/http".valueÂ·3 string)
+	func (@"net/http".hÂ·1 @"net/http".Header "esc:0x1") Del (@"net/http".keyÂ·2 string "esc:0x1")
+	func (@"net/http".hÂ·2 @"net/http".Header "esc:0x1") Get (@"net/http".keyÂ·3 string "esc:0x1") (? string)
+	func (@"net/http".hÂ·1 @"net/http".Header "esc:0x1") Set (@"net/http".keyÂ·2 string, @"net/http".valueÂ·3 string)
+	func (@"net/http".hÂ·2 @"net/http".Header "esc:0x9") Write (@"net/http".wÂ·3 @"io".Writer) (? error)
+	func (@"net/http".hÂ·2 @"net/http".Header "esc:0x9") WriteSubset (@"net/http".wÂ·3 @"io".Writer, @"net/http".excludeÂ·4 map[string]bool "esc:0x1") (? error)
+	func (@"net/http".hÂ·2 @"net/http".Header "esc:0x9") @"net/http".clone () (? @"net/http".Header)
+	func (@"net/http".hÂ·2 @"net/http".Header "esc:0x1") @"net/http".get (@"net/http".keyÂ·3 string "esc:0x1") (? string) { var @"net/http".vÂ·4 []string; ; @"net/http".vÂ·4 = @"net/http".hÂ·2[@"net/http".keyÂ·3]; if len(@"net/http".vÂ·4) > 0x0 { return @"net/http".vÂ·4[0x0] }; return "" }
+	func (@"net/http".hÂ·3 @"net/http".Header "esc:0x9") @"net/http".sortedKeyValues (@"net/http".excludeÂ·4 map[string]bool "esc:0x1") (@"net/http".kvsÂ·1 []@"net/http".keyValues, @"net/http".hsÂ·2 *@"net/http".headerSorter)
+	type @"net/http".ResponseWriter interface { Header() (? @"net/http".Header); Write(? []byte) (? int, ? error); WriteHeader(? int) }
+	func @"".MakeCookie (@"".wÂ·1 @"net/http".ResponseWriter, @"".cnameÂ·2 string, @"".valÂ·3 string)
+	type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+	type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+	type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+	func (@"time".lÂ·2 *@"time".Location "esc:0x22") String () (? string)
+	func (@"time".lÂ·2 *@"time".Location "esc:0x1") @"time".firstZoneUsed () (? bool)
+	func (@"time".lÂ·2 *@"time".Location "esc:0x12") @"time".get () (? *@"time".Location)
+	func (@"time".lÂ·6 *@"time".Location "esc:0x32") @"time".lookup (@"time".secÂ·7 int64) (@"time".nameÂ·1 string, @"time".offsetÂ·2 int, @"time".isDSTÂ·3 bool, @"time".startÂ·4 int64, @"time".endÂ·5 int64)
+	func (@"time".lÂ·2 *@"time".Location "esc:0x1") @"time".lookupFirstZone () (? int)
+	func (@"time".lÂ·4 *@"time".Location "esc:0x1") @"time".lookupName (@"time".nameÂ·5 string "esc:0x1", @"time".unixÂ·6 int64) (@"time".offsetÂ·1 int, @"time".isDSTÂ·2 bool, @"time".okÂ·3 bool)
+	type @"time".Duration int64
+	func (@"time".dÂ·2 @"time".Duration) Hours () (? float64) { var @"time".hourÂ·3 @"time".Duration; ; @"time".hourÂ·3 = @"time".dÂ·2 / @"time".Duration(0x34630b8a000); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0x34630b8a000); return float64(@"time".hourÂ·3) + float64(@"time".nsecÂ·4) * 8190022623310637111963488201822504381538623676021880892417778544696899264837610290203272971060556344039023584360473938041055625214280336402169897364226048p-553 }
+	func (@"time".dÂ·2 @"time".Duration) Minutes () (? float64) { var @"time".minÂ·3 @"time".Duration; ; @"time".minÂ·3 = @"time".dÂ·2 / @"time".Duration(0xdf8475800); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0xdf8475800); return float64(@"time".minÂ·3) + float64(@"time".nsecÂ·4) * 7678146209353722106395056769533233877065564876941352542109479049699919628723768656821910653339403201031675627614471533358284117434246264392176261853609984p-547 }
+	func (@"time".dÂ·2 @"time".Duration) Nanoseconds () (? int64) { return int64(@"time".dÂ·2) }
+	func (@"time".dÂ·2 @"time".Duration) Seconds () (? float64) { var @"time".secÂ·3 @"time".Duration; ; @"time".secÂ·3 = @"time".dÂ·2 / @"time".Duration(0x3b9aca00); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0x3b9aca00); return float64(@"time".secÂ·3) + float64(@"time".nsecÂ·4) * 7198262071269114660816079141112770740375861891461678802759824945047098083990024106014198994535558872472104883612039846078596891298747423852523262413111296p-541 }
+	func (@"time".dÂ·2 @"time".Duration) String () (? string)
+	type @"time".Month int
+	func (@"time".mÂ·2 @"time".Month) String () (? string) { return @"time".months[@"time".mÂ·2 - @"time".Month(0x1)] }
+	type @"time".Weekday int
+	func (@"time".dÂ·2 @"time".Weekday) String () (? string) { return @"time".days[@"time".dÂ·2] }
+	type @"time".Time struct { @"time".sec int64; @"time".nsec int32; @"time".loc *@"time".Location }
+	func (@"time".tÂ·2 @"time".Time "esc:0x12") Add (@"time".dÂ·3 @"time".Duration) (? @"time".Time) { @"time".tÂ·2.@"time".sec += int64(@"time".dÂ·3 / @"time".Duration(0x3b9aca00)); var @"time".nsecÂ·4 int32; ; @"time".nsecÂ·4 = int32(@"time".tÂ·2.@"time".nsec) + int32(@"time".dÂ·3 % @"time".Duration(0x3b9aca00)); if @"time".nsecÂ·4 >= 0x3b9aca00 { @"time".tÂ·2.@"time".sec++; @"time".nsecÂ·4 -= 0x3b9aca00 } else { if @"time".nsecÂ·4 < 0x0 { @"time".tÂ·2.@"time".sec--; @"time".nsecÂ·4 += 0x3b9aca00 } }; @"time".tÂ·2.@"time".nsec = @"time".nsecÂ·4; return @"time".tÂ·2 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x12") AddDate (@"time".yearsÂ·3 int, @"time".monthsÂ·4 int, @"time".daysÂ·5 int) (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") After (@"time".uÂ·3 @"time".Time "esc:0x1") (? bool) { return @"time".tÂ·2.@"time".sec > @"time".uÂ·3.@"time".sec || @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec > @"time".uÂ·3.@"time".nsec }
+	func (@"time".tÂ·2 @"time".Time "esc:0x9") AppendFormat (@"time".bÂ·3 []byte "esc:0x1a", @"time".layoutÂ·4 string "esc:0x9") (? []byte)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Before (@"time".uÂ·3 @"time".Time "esc:0x1") (? bool) { return @"time".tÂ·2.@"time".sec < @"time".uÂ·3.@"time".sec || @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec < @"time".uÂ·3.@"time".nsec }
+	func (@"time".tÂ·4 @"time".Time "esc:0x1") Clock () (@"time".hourÂ·1 int, @"time".minÂ·2 int, @"time".secÂ·3 int)
+	func (@"time".tÂ·4 @"time".Time "esc:0x1") Date () (@"time".yearÂ·1 int, @"time".monthÂ·2 @"time".Month, @"time".dayÂ·3 int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Day () (? int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Equal (@"time".uÂ·3 @"time".Time "esc:0x1") (? bool) { return @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec == @"time".uÂ·3.@"time".nsec }
+	func (@"time".tÂ·2 @"time".Time "esc:0x9") Format (@"time".layoutÂ·3 string "esc:0x9") (? string)
+	func (@"time".tÂ·2 *@"time".Time "esc:0x1") GobDecode (@"time".dataÂ·3 []byte "esc:0x1") (? error)
+	func (@"time".tÂ·3 @"time".Time "esc:0x1") GobEncode () (? []byte, ? error)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Hour () (? int)
+	func (@"time".tÂ·3 @"time".Time "esc:0x1") ISOWeek () (@"time".yearÂ·1 int, @"time".weekÂ·2 int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x12") In (@"time".locÂ·3 *@"time".Location "esc:0x12") (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") IsZero () (? bool) { return @"time".tÂ·2.@"time".sec == 0x0 && @"time".tÂ·2.@"time".nsec == 0x0 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x12") Local () (? @"time".Time) { @"time".tÂ·2.@"time".loc = @"time".Local; return @"time".tÂ·2 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x12") Location () (? *@"time".Location) { var @"time".lÂ·3 *@"time".Location; ; @"time".lÂ·3 = @"time".tÂ·2.@"time".loc; if @"time".lÂ·3 == nil { @"time".lÂ·3 = @"time".UTC }; return @"time".lÂ·3 }
+	func (@"time".tÂ·3 @"time".Time "esc:0x1") MarshalBinary () (? []byte, ? error)
+	func (@"time".tÂ·3 @"time".Time "esc:0x9") MarshalJSON () (? []byte, ? error)
+	func (@"time".tÂ·3 @"time".Time "esc:0x9") MarshalText () (? []byte, ? error)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Minute () (? int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Month () (? @"time".Month)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Nanosecond () (? int) { return int(@"time".tÂ·2.@"time".nsec) }
+	func (@"time".tÂ·2 @"time".Time "esc:0x12") Round (@"time".dÂ·3 @"time".Duration) (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Second () (? int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x9") String () (? string)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Sub (@"time".uÂ·3 @"time".Time "esc:0x1") (? @"time".Duration)
+	func (@"time".tÂ·2 @"time".Time "esc:0x12") Truncate (@"time".dÂ·3 @"time".Duration) (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x12") UTC () (? @"time".Time) { @"time".tÂ·2.@"time".loc = @"time".UTC; return @"time".tÂ·2 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Unix () (? int64) { return @"time".tÂ·2.@"time".sec + -0xe7791f700 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") UnixNano () (? int64) { return (@"time".tÂ·2.@"time".sec + -0xe7791f700) * 0x3b9aca00 + int64(@"time".tÂ·2.@"time".nsec) }
+	func (@"time".tÂ·2 *@"time".Time "esc:0x1") UnmarshalBinary (@"time".dataÂ·3 []byte "esc:0x1") (? error)
+	func (@"time".tÂ·2 *@"time".Time "esc:0x1") UnmarshalJSON (@"time".dataÂ·3 []byte "esc:0x1") (@"time".errÂ·1 error)
+	func (@"time".tÂ·2 *@"time".Time "esc:0x1") UnmarshalText (@"time".dataÂ·3 []byte "esc:0x1") (@"time".errÂ·1 error)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Weekday () (? @"time".Weekday)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Year () (? int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") YearDay () (? int)
+	func (@"time".tÂ·3 @"time".Time "esc:0x32") Zone () (@"time".nameÂ·1 string, @"time".offsetÂ·2 int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") @"time".abs () (? uint64)
+	func (@"time".tÂ·5 @"time".Time "esc:0x1") @"time".date (@"time".fullÂ·6 bool) (@"time".yearÂ·1 int, @"time".monthÂ·2 @"time".Month, @"time".dayÂ·3 int, @"time".ydayÂ·4 int)
+	func (@"time".tÂ·4 @"time".Time "esc:0x32") @"time".locabs () (@"time".nameÂ·1 string, @"time".offsetÂ·2 int, @"time".absÂ·3 uint64)
+	type @"net/http".Cookie struct { Name string; Value string; Path string; Domain string; Expires @"time".Time; RawExpires string; MaxAge int; Secure bool; HttpOnly bool; Raw string; Unparsed []string }
+	func (@"net/http".cÂ·2 *@"net/http".Cookie "esc:0x9") String () (? string)
+	func @"".DeleteCookie (@"".wÂ·1 @"net/http".ResponseWriter, @"".cookieÂ·2 *@"net/http".Cookie "esc:0x9")
+	func @"".init ()
+	var @"time".months [12]string
+	var @"time".days [7]string
+	var @"time".Local *@"time".Location
+	var @"time".UTC *@"time".Location
+
+$$
+_go_.o          0           0     0     644     4998      `
+go object windows amd64 go1.5.1 X:none
+
+!
+  go13ldnet/http.atime.ahtml.astrings.a ş "".SanitizeInput  À  ¾eH‹%(   H‹‰    H;a†»   HƒìX1ÛH‰\$pH‰\$x1ÛH‰\$HH‰\$PH‹\$`H‰$H‹\$hH‰\$è    H‹L$H‹D$H‰L$HH‰$H‰D$PH‰D$H    H‰\$HÇD$   1ÛH‰\$ H‰\$(HÇD$0ÿÿÿÿè    H‹L$8H‹D$@H‰L$HH‰$H‰D$PH‰D$è    H‹L$H‹D$H‰L$pH‰D$xHƒÄXÃè    é!ÿÿÿ      ”
+  "html.EscapeString   Ü  go.string." "   ¬
+  strings.Replace   ğ
+  "html.EscapeString   ¬
+  0runtime.morestack_noctxt   @°  "".output type.string "".~r1  type.string "".input  type.string °¶¯° à *"L1  I— TgclocalsÂ·2fccd208efe70893f9ac8d682812ae72 TgclocalsÂ·23e8278e2b69a3a75fa59b23c49ed6ad   ¶C:/FH/Semester03/WebProg2015/Tessera/src/frequentlyUsedFunctions/frequentlyUsedFunctions.goş"".MakeCookie  À  ¤eH‹%(   H‹‰    HD$€H;A†é   Hì   è    H‹$‹L$H‹D$H‰T$HH‰$‰L$P‰L$H‰D$XH‰D$HÇD$    HÇD$     HÇD$(   è    H‹l$0‹T$8H‹L$@H|$`1Àè    H‹œ$  H‰\$`H‹œ$   H‰\$hH‹œ$(  H‰\$pH‹œ$0  H‰\$xH‰¬$    ‰”$¨   H‰Œ$°   H‹œ$  H‰$H‹œ$  H‰\$H\$`H‰\$è    HÄ   Ãè    éîşÿÿ      N
+  time.Now   Ş
+  "time.Time.AddDate   ’
+‚  runtime.duffzero   ø
+  $net/http.SetCookie   ’
+  0runtime.morestack_noctxt   `€  
+"".autotmp_0001 ïtype.time.Time "".c ¿(type.net/http.Cookie "".val @type.string "".cname  type.string "".w  8type.net/http.ResponseWriter &€áÿ€   &&[W
+(  &Õ% TgclocalsÂ·2f4c94f4320faff38542823bfa739c70 TgclocalsÂ·6daf4ea3e98ae7edee45bdd405f41bca   ¶C:/FH/Semester03/WebProg2015/Tessera/src/frequentlyUsedFunctions/frequentlyUsedFunctions.goş"".DeleteCookie  À  ²eH‹%(   H‹‰    HD$˜H;A†0  Hìè   HÇÆ   1É1ÛHƒù ŒÍ   Hù Êš;À   E1ÀH‹    I¹ ÷‘w   IñA‰ÈL‰L$0D‰D$8H‰T$@H|$H1Àè    H‹´$   Hl$HH‹H‰M H‹NH‰M1ÛH‰\$XH‰\$`HÇ„$°   ÿÿÿÿL‰L$L‰Œ$ˆ   D‰D$ D‰„$   H‰T$(H‰”$˜   H‹œ$ğ   H‰$H‹œ$ø   H‰\$H\$HH‰\$è    HÄè   ÃH‰ÍI¹³”Ö&è.H‰ÈI÷éH‰ÓHÁûHÁı?H)ëHŞHiÛ Êš;H)ÙHƒù ÿÿÿHÁ Êš;HÿÎéùşÿÿè    é§şÿÿ
+      œ  time.Local   ò
+‚  runtime.duffzero   ø
+  $net/http.SetCookie    
+  0runtime.morestack_noctxt   0Ğ  "".autotmp_0007 ïtype.time.Time "".autotmp_0006  type.int64 "".autotmp_0005  type.int64 "".autotmp_0004  type.int64 "".~r0 Ÿtype.time.Time "".c ¿(type.net/http.Cookie "".cookie  *type.*net/http.Cookie "".w  8type.net/http.ResponseWriter &ĞáÏĞX à .8&
+K'(G	  ûe TgclocalsÂ·a9147c3531f082a2cfd2e5842c99b4f1 TgclocalsÂ·6417fff6994ebc0ce50d35d1813dec11   ¶C:/FH/Semester03/WebProg2015/Tessera/src/frequentlyUsedFunctions/frequentlyUsedFunctions.goş"".init  À  ÀeH‹%(   H‹‰    H;avC¶    €û t¶    €ûuÃè    Æ    è    è    è    è    Æ    Ãè    ë       2  "".initdoneÂ·   J  "".initdoneÂ·   `
+  "runtime.throwinit   p "".initdoneÂ·   |
+  net/http.init   †
+  time.init   
+  html.init   š
+  strings.init   ¦ "".initdoneÂ·   ´
+  0runtime.morestack_noctxt        ` ` J` 
+ /1 TgclocalsÂ·33cdeccccebe80329f1fdbee7f5874cb TgclocalsÂ·33cdeccccebe80329f1fdbee7f5874cb   ¶C:/FH/Semester03/WebProg2015/Tessera/src/frequentlyUsedFunctions/frequentlyUsedFunctions.goş"go.string.hdr." "                       go.string." "   şgo.string." "      şTgclocalsÂ·23e8278e2b69a3a75fa59b23c49ed6ad              şTgclocalsÂ·2fccd208efe70893f9ac8d682812ae72             şTgclocalsÂ·6daf4ea3e98ae7edee45bdd405f41bca               ¨b  şTgclocalsÂ·2f4c94f4320faff38542823bfa739c70                  şTgclocalsÂ·6417fff6994ebc0ce50d35d1813dec11               @£  şTgclocalsÂ·a9147c3531f082a2cfd2e5842c99b4f1                  şTgclocalsÂ·33cdeccccebe80329f1fdbee7f5874cb           şTgclocalsÂ·33cdeccccebe80329f1fdbee7f5874cb           ş0"".initdoneÂ·  type.uint8   ş&"".SanitizeInputÂ·f               "".SanitizeInput   ş "".MakeCookieÂ·f              "".MakeCookie   ş$"".DeleteCookieÂ·f              "".DeleteCookie   ş"".initÂ·f              "".init   ş.go.string.hdr."runtime"                       &go.string."runtime"   ş&go.string."runtime"   runtime  ş,go.importpath.runtime.                       &go.string."runtime"   ş0go.string.hdr."net/http"                       (go.string."net/http"   ş(go.string."net/http"    net/http  ş.go.importpath.net/http.                       (go.string."net/http"   ş(go.string.hdr."time"                        go.string."time"   ş go.string."time"   
+time  ş&go.importpath.time.                        go.string."time"   ş.go.string.hdr."strings"                       &go.string."strings"   ş&go.string."strings"   strings  ş,go.importpath.strings.                       &go.string."strings"   ş(go.string.hdr."html"                        go.string."html"   ş go.string."html"   
+html  ş&go.importpath.html.                        go.string."html"   ş"runtime.zerovalue      ÿÿgo13ld

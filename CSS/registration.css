@@ -1,7 +1,19 @@
-
+body{
+    margin: 0;
+    padding:0;
+    outline:0;
+}
 .labels
 {
     font-weight: bold;
     font-size: 1.2em;
     margin-left: 0.5em;
+}
+#regBox{
+    width:65%
+    float:left;
+}
+#notification{
+    width:25%
+    float:left;
 }
